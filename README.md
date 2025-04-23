@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Two Truths and a Lie - Farcaster Mini-App
+
+A fun game built as a Farcaster mini-app (Frames v2) where users can share two truths and one lie about themselves, and guess which statements from other users are lies.
+
+## Features
+
+- **Authentication**: Sign in with Farcaster
+- **Game Mechanics**: Enter 2 truths and 1 lie in text input fields
+- **Gameplay**: Guess which statement from other users is a lie
+- **Points System**: Get 100 points for correct guesses
+- **Leaderboard**: See top players based on points
+
+## Tech Stack
+
+- **Frontend**: Next.js with Tailwind CSS
+- **Backend**: Next.js API routes
+- **Database**: Prisma with SQLite
+- **Frames Integration**: frames.js for Farcaster Frames v2
+- **Image Generation**: Canvas for dynamic frame images
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18+ (recommended)
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/yourusername/two-truths.git
+   cd two-truths
+   ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Set up the database:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
 
-## Deploy on Vercel
+4. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser or Farcaster client.
+
+## Deployment
+
+### Deploying to Vercel
+
+1. Push your code to a GitHub repository.
+
+2. Import the project in Vercel.
+
+3. The project includes a `vercel.json` file that configures the build process to generate the Prisma client.
+
+4. Set the following environment variables in Vercel:
+
+   - `DATABASE_URL`: Your database connection string
+   - `NEXT_PUBLIC_HOST`: Your deployment URL (e.g., https://your-app.vercel.app)
+
+5. Deploy!
+
+## How It Works
+
+1. Users sign in with their Farcaster account
+2. They submit 2 truths and 1 lie about themselves
+3. Other users try to guess which statement is the lie
+4. Users earn 100 points for each correct guess
+5. A leaderboard shows the top players
+
+## Project Structure
+
+- `src/app/page.tsx`: Main landing page
+- `src/app/api/frames/route.ts`: API endpoint for frame actions
+- `src/app/api/frames/image/route.ts`: API endpoint for frame images
+- `lib/frames.ts`: Game logic and database operations
+- `lib/types.ts`: TypeScript interfaces
+- `prisma/schema.prisma`: Database schema
+
+## License
+
+MIT
